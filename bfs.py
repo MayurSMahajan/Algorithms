@@ -2,15 +2,14 @@ import queue;
 
 # Defining the graph with an adj matrix
 adj_list = {
-    "A":["B","S"],
+    "A":["B"],
     "B":["A"],
-    "C":["D","E","F","S"],
+    "C":["D","E","F"],
     "D":["C"],
     "E":["C","H"],
     "F":["G","C"],
-    "G":["S","F","H"],
+    "G":["F","H"],
     "H":["G","E"],
-    "S":["G","C","A"],
 }
 
 # Defining the queue with a size double that of v

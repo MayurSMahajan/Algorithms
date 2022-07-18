@@ -25,6 +25,10 @@ public class LL {
     }
 
     public void removeDuplicates(){
+        if(head == null){
+            return;
+        }
+
         Node temp = head;
         while (temp.next != null) {
             if(temp.val == temp.next.val){

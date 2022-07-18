@@ -21,7 +21,19 @@ public class LL {
             System.out.print(temp.val + " -> ");
             temp = temp.next;
         }
-        System.out.print(temp.val + " -> END");
+        System.out.println(temp.val + " -> END");
+    }
+
+    public void removeDuplicates(){
+        Node temp = head;
+        while (temp.next != null) {
+            if(temp.val == temp.next.val){
+                temp.next = temp.next.next;
+            }
+            else{
+                temp = temp.next;
+            }
+        }
     }
 
     private class Node {

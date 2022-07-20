@@ -18,6 +18,8 @@ public class App {
         LL list3 = new LL();
         list3.mergeTwoSortedLists(list1.getHead(), list2.getHead());
         list3.display();
+
+        System.out.print(list3.hasCycles());
         
     }
 }

@@ -100,6 +100,26 @@ public class LL {
         
     }
 
+    //Solution for Linked List Cycle LeetCode#141
+    public boolean hasCycles(){
+        Node fast = head;
+        Node slow = head;
+
+        while (fast != null && slow != null) {
+            if(fast.next != null){
+                fast = fast.next.next;
+            }
+            else{
+                return false;
+            }
+            slow = slow.next;
+            if(fast == slow){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private class Node {
         int val;
         Node next;

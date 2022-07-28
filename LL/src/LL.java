@@ -27,6 +27,21 @@ public class LL {
         System.out.println(temp.val + " -> END");
     }
 
+    public void reverseLL(){
+        head = reverseRecursion(head);
+    }
+
+    private Node reverseRecursion(Node n){
+        if(n.next == null){
+            head = n;
+            return head;
+        }
+        else{
+            head.next = reverseRecursion(n.next);
+            return n.next;
+        }
+    }
+
     //Solution of LeetCode problem number 83
     public void removeDuplicates(){
         if(head == null){

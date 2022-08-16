@@ -1,7 +1,7 @@
 //Solution for problem https://leetcode.com/problems/valid-parentheses/
 
 import java.util.*;
-import java.io.*;
+
 
 class ValidParenthesis {
     public static void main(String[] args) {

@@ -1,5 +1,4 @@
 import java.lang.Math;
-import java.util.*;
 
 class LongestCommonPrefix {
     public static void main(String[] args) {

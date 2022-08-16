@@ -1,21 +1,22 @@
 import java.util.*;
+import java.util.zip.ZipEntry;
 
 public class Q{
     public static void main(String []ar){
         // QUsingLL q = new QUsingLL(5);
-        QUsingLL q = new QUsingLL();
-        q.enqueue(7);
-        q.enqueue(6);
-        q.enqueue(5);
+        // QUsingLL q = new QUsingLL();
+        // q.enqueue(7);
+        // q.enqueue(6);
+        // q.enqueue(5);
         
-        System.out.println("First El of Q -> "+ q.first());
-        System.out.println(q.isEmpty());
+        // System.out.println("First El of Q -> "+ q.first());
+        // System.out.println(q.isEmpty());
         
-        while(!q.isEmpty()){
-            System.out.println(q.dequeue());
-        }
-        System.out.println(q.isEmpty());
-        System.out.println("Size of Q is -> "+q.size());
+        // while(!q.isEmpty()){
+        //     System.out.println(q.dequeue());
+        // }
+        // System.out.println(q.isEmpty());
+        // System.out.println("Size of Q is -> "+q.size());
     }
 }
 
@@ -91,4 +92,48 @@ class QUsingLL{
         return ll.removeFirst();
     }
 
+}
+
+/**
+ * QUsingStacks LINK : https://leetcode.com/problems/implement-queue-using-stacks/
+ */
+class QUsingStacks {
+
+    Stack<Integer> stack1;
+    Stack<Integer> stack2;
+    
+    public QUsingStacks() {
+        stack1 = new Stack<Integer>();
+        stack2 = new Stack<Integer>();
+    }
+    
+    public void push(int x) {
+        stack1.push(x);
+    }
+    
+    public int pop() {
+        while (!stack1.empty()) {
+            stack2.push(stack1.pop());
+        }
+        int ans = stack2.pop();
+        while (!stack2.empty()) {
+            stack1.push(stack2.pop());
+        }
+        return ans;
+    }
+    
+    public int peek() {
+        while (!stack1.empty()) {
+            stack2.push(stack1.pop());
+        }
+        int ans = stack2.peek();
+        while (!stack2.empty()) {
+            stack1.push(stack2.pop());
+        }
+        return ans;
+    }
+    
+    public boolean empty() {
+        return stack2.empty() && stack1.empty();
+    }
 }

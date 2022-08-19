@@ -8,6 +8,7 @@ public class MissingNum {
 
 /**
  * MissingNumber Leetcode : https://leetcode.com/problems/missing-number/
+ * 
  */
 class MissingNumber {
     public int missingNumber(int[] nums) {

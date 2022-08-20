@@ -23,13 +23,13 @@ class SplitArr {
         ArrayList<Integer> subArray2 = new ArrayList<>();
 
         for (int i = 0; i < nums.length - 1; i++) {
-            if(nums[i+1] == nums[i]+1 && subArray1.size() < 3){
+            if(nums[i+1] == nums[i]+1){
                 if(!subArray1.contains(nums[i])){
                     subArray1.add(nums[i]);
                 }
             }
             else{
-                if(subArray2.size() < 3 && !subArray2.contains(nums[i])){
+                if(!subArray2.contains(nums[i])){
                     subArray2.add(nums[i]);
                 }
             }
@@ -42,11 +42,16 @@ class SplitArr {
             return false;
         }
 
-        boolean isNumsEmpty = (nums.length -  (subArray1.size() + subArray2.size()) ) > 0;
+        int remainingElements = (nums.length -  (subArray1.size() + subArray2.size()) );
+        boolean isNumsEmpty = remainingElements == 0;
         if (subArray1.size() == 3 && subArray2.size() == 3) {
             if(isNumsEmpty){
                 return true;
             }
+            if(remainingElements > 1){
+                return false;
+            }
+
             //check if the first of the remaining element is larger then subarr2's last element
             if(subArray2.get(subArray2.size() - 1) + 1 == nums[6]){
                 return true;

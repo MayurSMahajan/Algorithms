@@ -9,7 +9,7 @@ public class CyclicSort {
         int[] arr = { 4, 3, 2, 7, 8, 2, 3, 1 };
         // int[] nums = { 3, 4, 5, 1, 2 };
         // System.out.println(Arrays.toString(bsc.sort(arr)));
-        List<Integer> list = bsc.findDisappearedNumbers(arr);
+        List<Integer> list = bsc.findDuplicates(arr);
         for (Integer element : list) {
             System.out.println(element);
         }
@@ -46,6 +46,7 @@ class BasicCyclicSort {
     }
 
     //Problem : https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+    //Asked in Google Interview.
     List<Integer> findDisappearedNumbers(int[] nums) {
 
         int i = 0;
@@ -64,6 +65,32 @@ class BasicCyclicSort {
         for (int index = 0; index < nums.length; index++) {
             if(index + 1 != nums[index]){
                 intList.add(index + 1 );
+            }
+        }
+
+        return intList;
+    }
+
+    //Problems : https://leetcode.com/problems/find-all-duplicates-in-an-array/submissions/
+    //Asked in Amazon Interview
+    List<Integer> findDuplicates(int[] nums) {
+
+        int i = 0;
+        while (i < nums.length) {
+            int correct = nums[i] - 1;
+
+            if (nums[i] != nums[correct]) {
+                swap(nums, i, correct);
+            } else {
+                i++;
+            }
+
+        }
+
+        List<Integer> intList = new ArrayList<Integer>(nums.length);
+        for (int index = 0; index < nums.length; index++) {
+            if(index + 1 != nums[index]){
+                intList.add(nums[index]);
             }
         }
 

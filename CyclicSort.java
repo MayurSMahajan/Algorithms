@@ -74,7 +74,7 @@ class BasicCyclicSort {
 
     // Problems :
     // https://leetcode.com/problems/find-all-duplicates-in-an-array/submissions/
-    // Asked in Amazon Interview
+    // Asked in Amazon and Microsoft Interview 
     List<Integer> findDuplicates(int[] nums) {
 
         int i = 0;
@@ -97,6 +97,29 @@ class BasicCyclicSort {
         }
 
         return intList;
+    }
+
+    //LeetCode : https://leetcode.com/problems/find-the-duplicate-number/
+    //Microsoft
+    int findDuplicate(int[] nums){
+        int i = 0;
+        while (i<nums.length) {
+            int correct = nums[i] - 1;
+
+            if(nums[i] != nums[correct]){
+                swap(nums, i, correct);
+            }
+            else{
+                i++;
+            }
+        }
+
+        for (int j = 0; j < nums.length; j++) {
+            if(j + 1 != nums[j]){
+                return nums[j];
+            }
+        }
+        return -1;
     }
 
     

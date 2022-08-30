@@ -8,10 +8,10 @@ public class CyclicSort {
         BasicCyclicSort bsc = new BasicCyclicSort();
         int[] arr = { 4, 3, 2, 7, 8, 2, 3, 1 };
         // int[] nums = { 3, 4, 5, 1, 2 };
-        // System.out.println(Arrays.toString(bsc.sort(arr)));
+        System.out.println(Arrays.toString(bsc.sort(arr)));
         List<Integer> list = bsc.findDuplicates(arr);
         for (Integer element : list) {
-            System.out.println(element);
+        System.out.println(element);
         }
 
     }
@@ -42,11 +42,12 @@ class BasicCyclicSort {
         int temp = nums[i];
         nums[i] = nums[correct];
         nums[correct] = temp;
-        
+
     }
 
-    //Problem : https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
-    //Asked in Google Interview.
+    // Problem :
+    // https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+    // Asked in Google Interview.
     List<Integer> findDisappearedNumbers(int[] nums) {
 
         int i = 0;
@@ -63,16 +64,17 @@ class BasicCyclicSort {
 
         List<Integer> intList = new ArrayList<Integer>(nums.length);
         for (int index = 0; index < nums.length; index++) {
-            if(index + 1 != nums[index]){
-                intList.add(index + 1 );
+            if (index + 1 != nums[index]) {
+                intList.add(index + 1);
             }
         }
 
         return intList;
     }
 
-    //Problems : https://leetcode.com/problems/find-all-duplicates-in-an-array/submissions/
-    //Asked in Amazon Interview
+    // Problems :
+    // https://leetcode.com/problems/find-all-duplicates-in-an-array/submissions/
+    // Asked in Amazon Interview
     List<Integer> findDuplicates(int[] nums) {
 
         int i = 0;
@@ -89,7 +91,7 @@ class BasicCyclicSort {
 
         List<Integer> intList = new ArrayList<Integer>(nums.length);
         for (int index = 0; index < nums.length; index++) {
-            if(index + 1 != nums[index]){
+            if (index + 1 != nums[index]) {
                 intList.add(nums[index]);
             }
         }
@@ -97,4 +99,5 @@ class BasicCyclicSort {
         return intList;
     }
 
+    
 }

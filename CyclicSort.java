@@ -6,13 +6,18 @@ import java.util.*;
 public class CyclicSort {
     public static void main(String[] args) {
         BasicCyclicSort bsc = new BasicCyclicSort();
-        int[] arr = { 4, 3, 2, 7, 8, 2, 3, 1 };
+        // int[] arr = { 4, 3, 2, 7, 8, 2, 3, 1 };
         // int[] nums = { 3, 4, 5, 1, 2 };
-        System.out.println(Arrays.toString(bsc.sort(arr)));
-        List<Integer> list = bsc.findDuplicates(arr);
-        for (Integer element : list) {
-        System.out.println(element);
-        }
+        
+        // System.out.println(Arrays.toString(bsc.sort(arr)));
+        
+        // List<Integer> list = bsc.findDuplicates(arr);
+        // for (Integer element : list) {
+        // System.out.println(element);
+        // }
+
+        int[] arr = { 4, 2, 2, 1 };
+        System.out.println(Arrays.toString(bsc.setMismatch(arr)));
 
     }
 }
@@ -42,7 +47,6 @@ class BasicCyclicSort {
         int temp = nums[i];
         nums[i] = nums[correct];
         nums[correct] = temp;
-
     }
 
     // Problem :
@@ -120,6 +124,36 @@ class BasicCyclicSort {
             }
         }
         return -1;
+    }
+
+    //https://leetcode.com/problems/set-mismatch/
+    int[] setMismatch(int[] nums) {
+        int[] ans = new int[2];
+        int i=0;
+        while (i<nums.length) {
+            int correct = nums[i] - 1;
+
+            if(nums[correct] != nums[i]){
+                swap(nums, i, correct);
+            }
+            else{
+                i++;
+            }
+        }
+
+        int index = 0;
+        while (index < nums.length) {
+           if(nums[index] != index + 1){
+            ans[0] = nums[index];
+            ans[1] = index + 1;
+            return ans;
+           }
+           else{
+            index++;
+           }
+        }
+
+        return ans;
     }
 
     

@@ -19,6 +19,10 @@ public class CyclicSort {
         int[] arr = { 4, 2, 2, 1 };
         System.out.println(Arrays.toString(bsc.setMismatch(arr)));
 
+        int[] newArr = {-1,1,0,2,4};
+
+        System.out.println(Arrays.toString(bsc.sort(newArr)));
+
     }
 }
 

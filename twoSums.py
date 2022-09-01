@@ -5,16 +5,24 @@ class Solution:
         print(nums)
         print(target)
 
-        numsDict = {}
-        index = 0
-        while index < len(nums):
-            numsDict[index] = nums[index]
-            index = index + 1
-        
-        i = 0
-        while i < len(nums):
-            value = target - nums[i]
-            if(value in numsDict):
-                return [i,]
+        #using two pointer approach 
+        #Note:- Works when array is sorted and i suppose this is leetcode 
+                #problem there they have mentioned that the array is sorted.
 
-    demo = twoSums(nums=[1,2,3,4], target=6)
+        left = 0 #pointing to first index
+        right = len(nums)-1 #pointing to last index
+
+        while(left<right):
+            if(nums[left]+nums[right] == target):
+                print(nums[left] , nums[right])
+                return[nums[left] , nums[right]]
+            
+            if(nums[left]+nums[right] > target):
+                right = right-1  #sum is greater so it makes sense to reduce the greater value
+            else:
+                left = left+1   #sum is less so it makes sense to upgrade the lesser value
+        
+        return []
+
+
+    demo = twoSums(nums=[1,2,3,4,5,6,7,7,8,8], target=90)

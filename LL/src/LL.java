@@ -135,6 +135,35 @@ public class LL {
         return false;
     }
 
+    //LeetCode : https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
+    public int getDecimalValue() {
+        //lets find the total number of nodes in ll
+        int ll_size = 0;
+        Node temp = head;
+        while(temp.next != null){
+            ll_size++;
+            temp = temp.next;
+        }
+        
+        if(ll_size == 0){
+            return head.val;
+        }
+        
+        //Now we have the size of ll so we know the total no. of bits in our bin no.
+        //our msb's base value will be ll_size * 2.
+        int base_val = (int) Math.pow(2.0,(int)ll_size);
+        temp = head;
+        
+        int decimal_ans = 0;
+        while(temp != null){
+            decimal_ans += (base_val * temp.val);
+            base_val /= 2;
+            temp = temp.next;
+        }
+        
+        return decimal_ans;
+    }
+
     private class Node {
         int val;
         Node next;

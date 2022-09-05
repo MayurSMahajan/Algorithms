@@ -164,6 +164,28 @@ public class LL {
         return decimal_ans;
     }
 
+    //Middle of the Linked List
+    //https://leetcode.com/problems/middle-of-the-linked-list/
+    public Node middleNode() {
+        //we will solve this using two pointers.
+        Node fast = head;
+        Node slow = head;
+        
+        while(fast.next != null && fast.next.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        
+        if(fast.next != null){
+            //this means the list has even no. of nodes
+            return slow.next;
+        }
+        else{
+            //this means the list has odd no. of nodes
+            return slow;
+        }
+    }
+
     private class Node {
         int val;
         Node next;

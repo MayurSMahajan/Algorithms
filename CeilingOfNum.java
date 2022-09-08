@@ -9,8 +9,10 @@
 public class CeilingOfNum {
     public static void main(String[] args) {
         Ceiling c = new Ceiling();
-        int[] nums = {2,4,7,8,9,10,13,14,15};
-        System.out.println(c.ceilingOfNum(nums, 11));
+        // int[] nums = {2,4,7,8,9,10,13,14,15};
+        // System.out.println(c.ceilingOfNum(nums, 11));
+        char[] letters = {'a','b','c','e','f','h','y','z'};
+        System.out.println(c.nextGreatestLetter(letters, 'f'));
     }
 }
 
@@ -40,4 +42,31 @@ class Ceiling {
 
         return best_ans;
     }
+
+    //This is a leetcode easy problem very similar to the above problem
+    //https://leetcode.com/problems/find-smallest-letter-greater-than-target/
+    //Time Limit Exceeded!
+
+    public char nextGreatestLetter(char[] letters, char target) {
+        
+        int start = 0;
+        int end = letters.length - 1;
+
+        while(start <= end){
+            
+            int middle = (start + (end - start)) / 2;
+ 
+            if(target >= letters[middle]){
+                start = middle + 1;
+            }
+            else{
+                end = middle - 1; 
+            }
+            
+        }
+        
+        return letters[start%letters.length];
+    }
 }
+
+

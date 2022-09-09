@@ -5,9 +5,9 @@
 public class FirstAndLastPos {
     public static void main(String[] args) {
         SearchRange sr = new SearchRange();
-        int[] nums = { 1, 1, 4, 4, 4, 5, 6, 7, 7 };
-        int target = 1;
-        int[] ans = sr.searchRange(nums, target);
+        int[] nums = { 1, 1, 4, 4, 4, 4, 5, 6, 7, 7 };
+        int target = 5;
+        int[] ans = sr.searchRangeBetter(nums, target);
         for (int i : ans) {
             System.out.println(i);
         }
@@ -77,5 +77,52 @@ class SearchRange {
             }
         }
         return -1;
+    }
+
+    public int[] searchRangeBetter(int[] nums, int target){
+        int[] ans = { -1, -1 };
+        if (nums.length == 0) {
+            return ans;
+        }
+
+        int begin = 0;
+        int end = nums.length - 1;
+
+        //search for the leftmost occurance.
+        while(begin <= end){
+            int mid = (begin + end) /2;
+
+            if(nums[mid] == target){
+                ans[0] = mid;
+                end = mid - 1;
+            }
+            else if(nums[mid] > target){
+                end = mid - 1;
+            }
+            else{
+                begin = mid + 1;
+            }
+        }
+
+        begin = 0;
+        end = nums.length - 1;
+
+        //search for the leftmost occurance.
+        while(begin <= end){
+            int mid = (begin + end) /2;
+
+            if(nums[mid] == target){
+                ans[1] = mid;
+                begin = mid + 1;
+            }
+            else if(nums[mid] < target){
+                begin = mid + 1;
+            }
+            else{
+                end = mid - 1;
+            }
+        }
+
+        return ans;
     }
 }

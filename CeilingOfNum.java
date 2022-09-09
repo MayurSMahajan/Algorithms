@@ -11,8 +11,8 @@ public class CeilingOfNum {
         Ceiling c = new Ceiling();
         // int[] nums = {2,4,7,8,9,10,13,14,15};
         // System.out.println(c.ceilingOfNum(nums, 11));
-        char[] letters = {'a','b','c','e','f','h','y','z'};
-        System.out.println(c.nextGreatestLetter(letters, 'f'));
+        char[] letters = {'c','f','j','m','o','p','r','s'};
+        System.out.println(c.nextGreatestLetter(letters, 'q'));
     }
 }
 
@@ -51,17 +51,21 @@ class Ceiling {
         
         int start = 0;
         int end = letters.length - 1;
+        int index = 0;
 
-        while(start <= end){
+        while(start <= end && index < 5){
             
-            int middle = (start + (end - start)) / 2;
+            int middle = (start + end) / 2;
+            System.out.println("s = "+start + " e = " + end + " m = " + middle);
  
-            if(target >= letters[middle]){
-                start = middle + 1;
-            }
-            else{
+            if(target < letters[middle]){
                 end = middle - 1; 
             }
+            else{
+                start = middle + 1;
+            }
+
+            index++;
             
         }
         

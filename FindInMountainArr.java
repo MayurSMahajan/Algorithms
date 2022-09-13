@@ -10,7 +10,7 @@
 public class FindInMountainArr{
     public static void main(String[] args) {
         FIMA fima = new FIMA();
-        int[] mountainArr = {0,1,2,4,2,1};
+        int[] mountainArr = {0,1,3,4,2,1};
         int target = 2;
         System.out.println(fima.findInMountainArray(target, mountainArr));
     }
@@ -24,8 +24,20 @@ class FIMA {
         //so after finding the mountain we will check for the target in the left part
         //if not found then we will look in the right part.
         
+        int peak = findPeakInMountain(mountainArr);
         
-        return -1;
+        int result = binarySearch(mountainArr, target, 0, peak-1, true);
+        if(-1 != result){
+            return result;
+        }
+
+        if(mountainArr[peak] == target){
+            return peak;
+        }
+
+        result = binarySearch(mountainArr, target, peak+1, mountainArr.length - 1, false);
+        
+        return result;
     }
 
     //implementing finding the mountain code
@@ -51,6 +63,43 @@ class FIMA {
         
         return start; //you can also return end since both will point to the same element.
     }    
+
+    public int binarySearch(int[]nums, int target, int start, int end, boolean isAscending){
+        
+        if(isAscending){
+            while(start <= end){
+                int mid = start + (end - start)/2;
+                
+                int middleNum = nums[mid];
+                if(middleNum == target){
+                    return mid;
+                }
+                if(target > middleNum){
+                    start = mid + 1;
+                }
+                else{
+                    end = mid - 1;
+                }
+            }
+        }
+        else{
+            while(start <= end){
+                int mid = start + (end - start)/2;
+
+                int middleNum = nums[mid];
+                if(middleNum == target){
+                    return mid;
+                }
+                if(target > middleNum){
+                    end = mid - 1;
+                }
+                else{
+                    start = mid + 1;
+                }
+            }
+        }
+        return -1;        
+    }
 }
 
 

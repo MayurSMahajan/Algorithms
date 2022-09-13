@@ -26,8 +26,9 @@ class SIRA {
         //check if peak element is target or not
         System.out.println(peakIndex);
         
+        //if there is no peak then that means the array is sorted ascendingly.
         if(peakIndex == -1){
-            return binarySearch(nums, target, 0, nums.length);
+            return binarySearch(nums, target, 0, nums.length-1);
         }
 
         if(nums[peakIndex] == target){

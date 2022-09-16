@@ -3,9 +3,6 @@ package MyTree;
 import java.util.ArrayList;
 import java.util.List;
 
-//LeetCode 590
-//https://leetcode.com/problems/n-ary-tree-postorder-traversal/submissions/
-
 //Definition for a Node.
 class Node {
     public int val;
@@ -24,6 +21,9 @@ class Node {
 };
 
 public class NArrTraversal {
+
+    //LeetCode 590
+    //https://leetcode.com/problems/n-ary-tree-postorder-traversal/submissions/
     public List<Integer> postorder(Node root) {
         List<Integer> visited = new ArrayList<Integer>();
         postorderRecursive(root, visited);
@@ -36,6 +36,22 @@ public class NArrTraversal {
             postorderRecursive(n,visited);
         }
         visited.add(node.val);
+    }
+
+    //LeetCode 589
+    //https://leetcode.com/problems/n-ary-tree-preorder-traversal/
+    public List<Integer> preorder(Node root) {
+        List<Integer> visited = new ArrayList<Integer>();
+        preorderRecursive(root, visited);
+        return visited;
+    }
+
+    public void preorderRecursive(Node node, List<Integer> visited){
+        if(node == null) return;
+        visited.add(node.val);
+        for(Node n : node.children){
+            preorderRecursive(n,visited);
+        }
     }
 }
 

@@ -57,4 +57,48 @@ class InnerLevelOrder {
         return visited;
     }
     
+    //Incorrect Solution
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> visited = new ArrayList<List<Integer>>();
+        if(root == null) return visited;
+        
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.add(root);
+        int level = 0;
+        
+        while(!q.isEmpty()){
+            int qLength = q.size();
+            List<Integer> subArr = new ArrayList<Integer>();
+            
+            for(int i = 0; i < qLength; i++){
+                TreeNode curr = q.remove();
+                if(curr != null){
+                    subArr.add(curr.val);
+                    if(level%2 == 0){
+                        if(curr.left != null){
+                            q.add(curr.left);    
+                        }
+                        if(curr.right != null){
+                            q.add(curr.right);    
+                        }
+                    }
+                    else{
+                        if(curr.right != null){
+                            q.add(curr.right);    
+                        }
+                        if(curr.left != null){
+                            q.add(curr.left);    
+                        }
+                    
+                    }
+                    
+                }
+            }
+            visited.add(subArr);
+            level++;
+        }
+        
+        return visited;
+    }
+    
 }

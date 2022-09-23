@@ -186,6 +186,31 @@ public class LL {
         }
     }
 
+    //LeetCode Reverse LL Iteratively - 
+    //https://leetcode.com/problems/reverse-linked-list/
+    public Node reverseList() {
+        
+        if(head == null || head.next == null) return head;
+        
+        Node prev = null;
+        Node current = head;
+        
+        Node future = head.next;
+        
+        while(current != null){
+            current.next = prev;
+            prev = current;
+            current = future;
+            if(future != null){
+                future = future.next;
+            }
+        }
+        head = prev;
+         
+        
+        return head;
+    }
+
     private class Node {
         int val;
         Node next;

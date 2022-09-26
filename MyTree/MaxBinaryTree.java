@@ -2,13 +2,14 @@ package MyTree;
 
 // 654. https://leetcode.com/problems/maximum-binary-tree/
 public class MaxBinaryTree {
-    
+    //Again I am too lazy to code the driving program. Both the solutions described below
+    // work fine, try them directly in LeetCode IDE.
 }
 
 /**
  * My Initial Solution
  */
-class InnerMaxBinaryTree {
+class InitialMaxBT {
     public TreeNode constructMaximumBinaryTree(int[] nums) {
         if(nums.length == 0) return null;
         int indexWithMax = findIndexWithMaxValue(nums);
@@ -59,4 +60,33 @@ class InnerMaxBinaryTree {
         }
         return indexOfMax;
     }
+}
+//The algorithm is correct but the solution is slow because of the way we are creating
+// our subarray. The following is a much cleaner way to achieve the same algorithm.
+
+class OptimizedMaxBt {
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+        return constructMaxBT(nums, 0, nums.length);
+    }
+    
+    public TreeNode constructMaxBT(int[] nums, int start, int end){
+        if(start == end){
+            return null;
+        }
+        int indexWithMax = findIndexWithMaxValue(nums, start, end);
+        TreeNode n = new TreeNode(nums[indexWithMax]);
+        n.left = constructMaxBT(nums, start, indexWithMax);
+        n.right = constructMaxBT(nums, indexWithMax + 1, end);
+        return n;
+    }
+    
+    public int findIndexWithMaxValue(int[] nums, int start, int end){
+        int indexOfMax = start;
+        for(int i = start; i < end; i++){
+            if(nums[i] > nums[indexOfMax]){
+                indexOfMax = i;
+            }
+        }
+        return indexOfMax;
+    }    
 }

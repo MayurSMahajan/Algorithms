@@ -220,5 +220,35 @@ public class LL {
         }
 
     }
+
+    //https://leetcode.com/problems/remove-nth-node-from-end-of-list/submissions/
+    //leetcode signature - public ListNode removeNthFromEnd(ListNode head, int n) {
+    public Node removeNthFromEnd(int n) {
+        
+        
+        Node pointToEnd = head;
+        Node pointToElement = head;
+        Node pointPrev = null;
+        
+        while((n-1) > 0){
+            n--;
+            pointToEnd = pointToEnd.next;
+        }
+        
+        while(pointToEnd.next != null){
+            pointToEnd = pointToEnd.next;
+            pointPrev = pointToElement;
+            pointToElement = pointToElement.next;
+        }
+        
+        if(pointPrev != null){
+            pointPrev.next = pointToElement.next;    
+        }
+        else{
+            head = head.next;
+        }
+        
+        return head;
+    }
     
 }

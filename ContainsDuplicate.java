@@ -1,5 +1,7 @@
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.HashMap;
+import java.lang.Math;
 
 /**
  * ContainsDuplicate -- Problem Series LeetCode
@@ -10,6 +12,7 @@ public class ContainsDuplicate {
         CD cd = new CD();
         System.out.println(cd.containsDuplicateI(nums));
         System.out.println(cd.containsDuplicateUsingSet(nums));
+        System.out.println(cd.containsNearbyDuplicate(nums, 6));
     }
 }
 
@@ -49,6 +52,50 @@ class CD{
             }
             set.add(num);
         }
+        return false;
+    }
+
+    //https://leetcode.com/problems/contains-duplicate-ii/
+    //Time Limit Exceeded
+
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        if(k > nums.length){
+            k = nums.length;
+        }
+        while (k > 0) {
+            int i = 0;
+            int j = i + k;
+            while (j < nums.length) {
+                if(nums[i] == nums[j]){
+                    return true;
+                }
+                i++;
+                j++;
+            }
+            k--;
+        }
+        return false;   
+    }
+
+    //https://leetcode.com/problems/contains-duplicate-ii/
+    //17sec faster than 97.65%, 50MB less space than 92.12%
+
+    public boolean containsNearbyDuplicateUsingHash(int[] nums, int k){
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+
+        for(int i=0; i < nums.length; i++){
+            //if a number already exists in the hashmap
+            
+            if(map.get(nums[i]) != null){
+                Integer indexOfFound = map.get(nums[i]);
+                if(k >= Math.abs(i - indexOfFound)){
+                    return true;
+                }
+            }
+            map.put(nums[i], i);
+        
+        }
+
         return false;
     }
 }

@@ -46,3 +46,26 @@ class Fibonacci{
         return memo.get(n);
     }
 }
+
+//https://leetcode.com/problems/n-th-tribonacci-number/submissions/
+//The key takeway from this function below is that array access is significantly faster than hash access
+//With using hash the same program was only 10% faster and used 45% less space
+//With using array for memoization the program is 100% faster and uses 63% less space.
+
+class Tribonacci{
+    public int tribonacci(int n) {
+        int[] memo = new int[n+1];
+        return tribo(n, memo);
+    }
+    
+    int tribo(int n, int[] memo){
+        if(n == 0) return 0;
+        if(n == 2|| n == 1) return 1;
+        
+        if(memo[n] != 0) return memo[n];
+        
+        memo[n] = (tribo(n-1,memo) + tribo(n-2,memo) + tribo(n-3,memo));
+         
+        return memo[n];
+    }
+}

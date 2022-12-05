@@ -185,6 +185,29 @@ public class LL {
             return slow;
         }
     }
+    
+    //Delete the Middle of the Linked List
+    //heavily similar to the problem above, rather than returning the middle we just change the previous to middle to point to the next to middle.
+    //https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/submissions/
+    //5ms faster than 73% uses 63.5mb less than 81%.
+    public ListNode deleteMiddle() {
+        ListNode fast = head;
+        ListNode slow = head;
+        int count = 0;
+        while(fast != null){
+            fast = fast.next;
+            count++;
+        }
+        if(count == 1) return null;
+        count /=2;
+        while(count > 1){
+            slow = slow.next;
+            count--;
+        }
+        slow.next = slow.next.next;
+        return head;
+    }
+    
 
     //LeetCode Reverse LL Iteratively - 
     //https://leetcode.com/problems/reverse-linked-list/

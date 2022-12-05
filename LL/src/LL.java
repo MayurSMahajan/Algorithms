@@ -274,4 +274,59 @@ public class LL {
         return head;
     }
     
+    
+    //143. Reorder List
+    //https://leetcode.com/problems/reorder-list/
+    //using stack
+    public void reorderList(ListNode head) {
+        if(head.next == null)  return;
+        ListNode temp = head;
+        Stack<ListNode> stack = new Stack<>();
+        
+        while(temp != null){
+            stack.push(temp);
+            temp = temp.next;
+        }
+        
+        temp = head;
+        int count = stack.size() /2;
+        
+        while(count > 0){
+            ListNode top = stack.pop();
+            ListNode newTemp = temp.next;
+            temp.next = top;
+            temp = newTemp;
+            top.next = temp;
+            count--;
+        }
+        
+        temp.next = null;
+    }
+    
+    //143. Reorder List
+    //https://leetcode.com/problems/reorder-list/
+    //without stack
+    public void reorderListSlow(ListNode head) {
+        if(head.next == null) return;
+        ListNode start = head;
+        ListNode end = head;
+        while(end.next.next != null){
+            end = end.next;
+        }
+        //insert the last element after the first element
+        while(start != end && start != end.next){
+            ListNode temp = start.next;
+            start.next = end.next;
+            end.next = null;
+            start = start.next;
+            start.next = temp;
+            
+            start = start.next;
+            end = head;
+            while(end.next.next != null){
+                end = end.next;
+            }
+        }
+    }
+    
 }
